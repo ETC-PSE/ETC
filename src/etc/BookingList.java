@@ -20,7 +20,7 @@ import javax.swing.table.TableRowSorter;
 
 /**
  * Form to change the lesson date, time, author and display number of bookings
- * @author sures
+ * @author suresh
  */
 public class BookingList extends javax.swing.JPanel {
 
