@@ -11,7 +11,7 @@ import javax.swing.JOptionPane;
 import javax.swing.WindowConstants;
 
 /**
- *  Login page for the user ID
+ *  Login page for the user ID'S
  * @author sures
  */
 public class Login extends javax.swing.JFrame {
