@@ -39,6 +39,7 @@ public class BookLesson extends javax.swing.JPanel implements ListSelectionListe
     String command;
     List<String> tutors = new ArrayList<String>();
     DefaultListModel model;
+    
     public BookLesson(String ID, String name, String command) {
         initComponents();
         this.id = ID;
@@ -211,26 +212,47 @@ public class BookLesson extends javax.swing.JPanel implements ListSelectionListe
         String message = null;
         String tutid =  "    ";
         selectedBook   = "none" ;
+        String selectedTutor = "";
+        String date = "";
+        //Validate tutor
+        try{
+            selectedTutor   = TutorList.getSelectedValue().toString();
+        } catch(NullPointerException e){
+            JOptionPane.showMessageDialog(null, "Please select tutor");
+            return;
+        }
+        // Validate Date
+        SimpleDateFormat sdf   = new SimpleDateFormat("dd-MM-yyyy");
+        try{
+            date            = sdf.format(jDateChooser1.getDate());
+        } catch(NullPointerException e){
+            JOptionPane.showMessageDialog(null, "Please select date");
+            return;   
+        }
+        
         message = "Do you want to book the lesson?";
         if("ORDERBOOK".equals(command)){
             selectedBook   = TutorList.getSelectedValue().toString();
             message = "Do you want to order the book?";
         }
-
-       
         int choice = JOptionPane.showConfirmDialog(null,message,"",JOptionPane.OK_CANCEL_OPTION);
         if(choice == 2)
             return;
         String selectedSubject = subjectList.getSelectedItem( ).toString();
-        String selectedTutor   = TutorList.getSelectedValue().toString();
+        
         int tutorindex         = TutorList.getSelectedIndex();
-        SimpleDateFormat sdf   = new SimpleDateFormat("dd-MM-yyyy");
-        String date            = sdf.format(jDateChooser1.getDate());
+        
+        
         String hours           = Hours.getSelectedItem().toString();
         String minutes         = Minutes.getSelectedItem().toString();
         String stdstatus       = "Booked";
         String tutstatus       = "     ";
         String index           = "0"; 
+        
+
+        
+
+        
         if("ORDERBOOK" != command)
             tutid           = tutors.get(tutorindex);
         etcDataManager etc     = new etcDataManager( );
