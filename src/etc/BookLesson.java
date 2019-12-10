@@ -6,7 +6,7 @@
 package etc;
 
 /**
- * Form to book a lesson
+ * Book Lesson form page
  * @author sures 
  */
 
