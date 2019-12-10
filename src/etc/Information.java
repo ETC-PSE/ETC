@@ -9,7 +9,7 @@ import javax.swing.JOptionPane;
 
 /**
  * Student and Tutors Information
- * @author suresh
+ * @author suresh Katamsetty
  */
 public class Information {
     private String stID;
