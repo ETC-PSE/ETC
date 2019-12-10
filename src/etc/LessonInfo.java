@@ -9,7 +9,7 @@ import java.io.Serializable;
 
 /**
  * Lesson information which creates objects to save as objects in the file 
- * @author comqsjb
+ * @author Suresh
  */
 public class LessonInfo implements Serializable
 {
