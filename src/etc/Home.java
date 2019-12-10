@@ -8,7 +8,7 @@ package etc;
 import javax.swing.WindowConstants;
 
 /**
- * Home page
+ * Home page Design
  * @author sures
  */
 
