@@ -29,14 +29,11 @@ import static javax.swing.JOptionPane.OK_CANCEL_OPTION;
 
 /**
  *  Maintains student and tutors information and modifications
- * @author comqsjb
+ * @author Suresh Katamsetty
  */
 public class etcDataManager
 {
-	private File dataFile = new File(System.getProperty("user.dir")+"\\src\\etcDataset.dat");
-//        String path = etcDataManager.class.getResource("etcDataset.dat").getPath();
-//        InputStream dataFile = etcDataManager.class.getClassLoader().getResourceAsStream("etcDataset.dat");
-        
+	private File dataFile = new File(System.getProperty("user.dir")+"\\src\\etcDataset.dat");        
 	List<LessonInfo> infoStorage = new ArrayList<LessonInfo>();	
 	static etcDataManager inst = null;
         static boolean success;
@@ -54,13 +51,6 @@ public class etcDataManager
 	etcDataManager()
 	{
             System.out.println(System.getProperty("user.dir"));
-//            if(dataFile.exists() == false){
-//                try {
-//                    boolean created = dataFile.createNewFile();
-//                } catch (IOException ex) {
-//                    Logger.getLogger(etcDataManager.class.getName()).log(Level.SEVERE, null, ex);
-//                }
-//            }
             readFromFile();
 	}
         
