@@ -9,7 +9,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- *
+ * Tutors ID and related data
  * @author sures
  */
 public class TutorsData {

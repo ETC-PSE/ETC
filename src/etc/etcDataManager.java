@@ -28,7 +28,7 @@ import javax.swing.JOptionPane;
 import static javax.swing.JOptionPane.OK_CANCEL_OPTION;
 
 /**
- *
+ *  Maintains student and tutors information and modifications
  * @author comqsjb
  */
 public class etcDataManager

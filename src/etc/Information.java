@@ -8,7 +8,7 @@ package etc;
 import javax.swing.JOptionPane;
 
 /**
- *
+ * Student and Tutors Information
  * @author sures
  */
 public class Information {

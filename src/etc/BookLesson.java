@@ -6,8 +6,8 @@
 package etc;
 
 /**
- *
- * @author sures
+ * Form to book a lesson
+ * @author sures 
  */
 
 import static com.sun.org.apache.xalan.internal.xsltc.compiler.util.Type.Int;

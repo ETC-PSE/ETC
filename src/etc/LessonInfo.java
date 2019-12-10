@@ -8,7 +8,7 @@ package etc;
 import java.io.Serializable;
 
 /**
- *
+ * Lesson information which creates objects to save as objects in the file 
  * @author comqsjb
  */
 public class LessonInfo implements Serializable

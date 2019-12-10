@@ -7,7 +7,7 @@ package etc;
 
 
 /**
- *
+ * Main class invoker of the project
  * @author sures
  */
 public class ETC {
