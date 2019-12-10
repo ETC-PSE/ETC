@@ -386,10 +386,15 @@ public class BookingList extends javax.swing.JPanel {
     }//GEN-LAST:event_jRadioButton1ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-
+        int index;
+        index = jTable3.getSelectedRow();
+        if(index<0){
+            JOptionPane.showMessageDialog(null, "Please select row");
+            return;
+        }
         if((jRadioButton1.isSelected()==true)){
             checkinStatus = "Cancelled";
-        } else{
+        } else if(jRadioButton2.isSelected()==true){
             checkinStatus = jRadioButton2.getText();
             
         }
@@ -438,6 +443,7 @@ public class BookingList extends javax.swing.JPanel {
     private javax.swing.JTable jTable6;
     // End of variables declaration//GEN-END:variables
 
+    // Populate booking list data on tables
     private void populateBookingListdata(ArrayList li) {
         
         DefaultTableModel dtm = new DefaultTableModel(0, 0);
@@ -475,7 +481,7 @@ public class BookingList extends javax.swing.JPanel {
             fillBookListData(li,dtm);
         }
         
-        if(("REPORT".equals(command)) || ("TUTREPORT".equals(command))){ // For only report purpose
+        if(("REPORT".equals(command)) || ("TUTREPORT".equals(command))){ // For only report purpose 
             
             DefaultTableModel dtm4 = new DefaultTableModel(0, 0);
             DefaultTableModel dtm5 = new DefaultTableModel(0, 0);
@@ -504,6 +510,15 @@ public class BookingList extends javax.swing.JPanel {
             
 
             if("REPORT".equals(command)){
+                int count = 0;
+                for(int i=0;i<li.size();i++){
+                    LessonInfo lessoninfo = (LessonInfo) li.get(i);
+                    if("none".equals(lessoninfo.books)){
+                        count = count + 1;
+                    }         
+                }
+                
+                jLabel6.setText("Total number of classes booked : "+count); 
                 DefaultTableModel dtm6 = new DefaultTableModel(0, 0);
                 dtm6.setColumnIdentifiers(header);
                 jTable6.setModel(dtm6);
@@ -575,9 +590,14 @@ public class BookingList extends javax.swing.JPanel {
     }
     
     private void getrowdata(String id,String Status){
-        
         String status;
-        
+        int index;
+        index = jTable3.getSelectedRow();
+        if(index<0){
+            JOptionPane.showMessageDialog(null, "Please select row");
+            return;
+        }
+
         DefaultTableModel tableModel = (DefaultTableModel) jTable3.getModel();
         Vector rowdata;
         rowdata = (Vector) tableModel.getDataVector().elementAt(jTable3.getSelectedRow());
@@ -594,7 +614,6 @@ public class BookingList extends javax.swing.JPanel {
         String tutid   = (String) rowdata.get(8);
         String book   = (String) rowdata.get(9);
         String rowindex = (String) rowdata.get(10);
-        
         String idrecg = id.substring(0,2);
 
         if(Status==null){
@@ -608,7 +627,6 @@ public class BookingList extends javax.swing.JPanel {
         }else{
             tutStatus = status;
         }
-        
         etc.changeLessonInfo(id,stdname,subject,date,hrs,min,tutor,stdStatus,tutStatus,tutid,book,rowindex);
         
     }
@@ -620,6 +638,9 @@ public class BookingList extends javax.swing.JPanel {
                 jTable3.getColumnModel().getColumn(9).setMaxWidth(0); 
                 
                 if("19".equals(idrecg)){ 
+                    jTable3.getColumnModel().getColumn(0).setWidth(0);
+                    jTable3.getColumnModel().getColumn(0).setMinWidth(0);
+                    jTable3.getColumnModel().getColumn(0).setMaxWidth(0);
                     jTable3.getColumnModel().getColumn(1).setWidth(0);
                     jTable3.getColumnModel().getColumn(1).setMinWidth(0);
                     jTable3.getColumnModel().getColumn(1).setMaxWidth(0); 
@@ -642,12 +663,20 @@ public class BookingList extends javax.swing.JPanel {
     
         private void fillReportAttendanceData(ArrayList li,DefaultTableModel dtm) {
                 int count = 0;
-                jTable4.getColumnModel().getColumn(9).setWidth(0);
-                jTable4.getColumnModel().getColumn(9).setMinWidth(0);
-                jTable4.getColumnModel().getColumn(9).setMaxWidth(0); 
-                
+                int count2 = 0;
+                jTable5.getColumnModel().getColumn(9).setWidth(0);
+                jTable5.getColumnModel().getColumn(9).setMinWidth(0);
+                jTable5.getColumnModel().getColumn(9).setMaxWidth(0);
+                if("TUTREPORT".equals(command)){
+                    jTable5.getColumnModel().getColumn(0).setWidth(0);
+                    jTable5.getColumnModel().getColumn(0).setMinWidth(0);
+                    jTable5.getColumnModel().getColumn(0).setMaxWidth(0); 
+                    jTable5.getColumnModel().getColumn(6).setWidth(0);
+                    jTable5.getColumnModel().getColumn(6).setMinWidth(0);
+                    jTable5.getColumnModel().getColumn(6).setMaxWidth(0); 
+                }
 
-                
+             
                 for (int i = 0; i < li.size(); i++) {
                     
                     LessonInfo lessoninfo = (LessonInfo) li.get(i);
@@ -667,12 +696,10 @@ public class BookingList extends javax.swing.JPanel {
                                                   lessoninfo.tutorid,    lessoninfo.books, lessoninfo.index }); 
                     }
                     
-                    if(("TUTREPORT".equals(command)) && ("none".equals(lessoninfo.books))){
-                        int count2 = 0;
-                        count2 = count2 + 1;
-                        jLabel6.setText("Total number of classes: "+count2);  
-                        
-                    }
+//                    if(("TUTREPORT".equals(command)) && ("none".equals(lessoninfo.books))){
+//                        count2 = count2 + 1;
+//                       
+//                    }
                     
                     
                 }
@@ -683,9 +710,18 @@ public class BookingList extends javax.swing.JPanel {
         
         private void fillReportAbsenceData(ArrayList li,DefaultTableModel dtm) {
                 int count = 0;
-                jTable5.getColumnModel().getColumn(9).setWidth(0);
-                jTable5.getColumnModel().getColumn(9).setMinWidth(0);
-                jTable5.getColumnModel().getColumn(9).setMaxWidth(0); 
+                jTable4.getColumnModel().getColumn(9).setWidth(0);
+                jTable4.getColumnModel().getColumn(9).setMinWidth(0);
+                jTable4.getColumnModel().getColumn(9).setMaxWidth(0);
+                
+                if("TUTREPORT".equals(command)){
+                    jTable4.getColumnModel().getColumn(0).setWidth(0);
+                    jTable4.getColumnModel().getColumn(0).setMinWidth(0);
+                    jTable4.getColumnModel().getColumn(0).setMaxWidth(0); 
+                    jTable4.getColumnModel().getColumn(6).setWidth(0);
+                    jTable4.getColumnModel().getColumn(6).setMinWidth(0);
+                    jTable4.getColumnModel().getColumn(6).setMaxWidth(0); 
+                }
                 
                 for (int i = 0; i < li.size(); i++) {
                     LessonInfo lessoninfo = (LessonInfo) li.get(i);
@@ -754,8 +790,7 @@ public class BookingList extends javax.swing.JPanel {
                     }
                 }
                 jLabel4.setText("Number of books ordered : "+count);
-                count = li.size() - count;
-                jLabel6.setText("Total number of classes booked : "+count);             
+                            
 
     }    
 
@@ -802,6 +837,7 @@ public class BookingList extends javax.swing.JPanel {
                 
             }
     }
+
     
         
 }

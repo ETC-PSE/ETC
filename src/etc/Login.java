@@ -53,6 +53,7 @@ public class Login extends javax.swing.JFrame {
         jButton4 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setTitle("ETC");
 
         jLayeredPane1.setLayout(new java.awt.CardLayout());
 

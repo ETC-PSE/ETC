@@ -241,18 +241,11 @@ public class BookLesson extends javax.swing.JPanel implements ListSelectionListe
         String selectedSubject = subjectList.getSelectedItem( ).toString();
         
         int tutorindex         = TutorList.getSelectedIndex();
-        
-        
         String hours           = Hours.getSelectedItem().toString();
         String minutes         = Minutes.getSelectedItem().toString();
         String stdstatus       = "Booked";
         String tutstatus       = "     ";
-        String index           = "0"; 
-        
-
-        
-
-        
+        String index           = "0";        
         if("ORDERBOOK" != command)
             tutid           = tutors.get(tutorindex);
         etcDataManager etc     = new etcDataManager( );

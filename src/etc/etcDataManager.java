@@ -34,7 +34,8 @@ import static javax.swing.JOptionPane.OK_CANCEL_OPTION;
 public class etcDataManager
 {
 	private File dataFile = new File(System.getProperty("user.dir")+"\\src\\etcDataset.dat");        
-	List<LessonInfo> infoStorage = new ArrayList<LessonInfo>();	
+	List<LessonInfo> infoStorage = new ArrayList<LessonInfo>();
+        static List<LessonInfo> infoStoragetable = new ArrayList<LessonInfo>();
 	static etcDataManager inst = null;
         static boolean success;
         private String status;
@@ -68,6 +69,7 @@ public class etcDataManager
                 int index = Integer.parseInt(rowindex);	
                 infoStorage.remove(index);
                 infoStorage.add(index, li);
+                infoStoragetable = infoStorage;//global array list for only jar file run
                 storeToFile(li);
                 showConfirmationMessage(id,subject,date,hours,minutes,stdstatus,tutstatus);
                 return true;
@@ -96,7 +98,17 @@ public class etcDataManager
                 if(infoStorage.isEmpty()){
                     li.index = "0";
                 }
+                for(int i=0;i<infoStorage.size();i++){
+                    LessonInfo lf = infoStorage.get(i);
+                    if((lf.date.equals(li.date)) && (li.hours.equals(lf.hours)) &&
+                       (lf.minutes.equals(li.minutes)) && (lf.subject.equals(li.subject))&&
+                       (lf.tutor.equals(li.tutor))){
+                        JOptionPane.showMessageDialog(null, "Booking is already available");
+                        return false;
+                    }
+                }
                 infoStorage.add(li);
+                infoStoragetable = infoStorage; //global array list for only jar file 
                 storeToFile(li);
                 if("ORDERBOOK".equals(command)){
                     JOptionPane.showMessageDialog(null, "Your book has been ordered");
@@ -111,6 +123,8 @@ public class etcDataManager
                 JOptionPane.showMessageDialog(null, "Unable to book your class");
                 return false;
             }
+            
+            
         }
              
 	public ArrayList<LessonInfo> searchData(String ID)
@@ -184,38 +198,34 @@ public class etcDataManager
 	
 	public void readFromFile()
 	{
-		
-                
-                if(dataFile.exists() == false)
-                        return;
-             
-                
-                try
-		{
-
-
-//                            InputStream file = etcDataManager.class.getClassLoader().getResourceAsStream("etcDataset.dat");
-                            FileInputStream file = new FileInputStream(dataFile) {};
-                            ObjectInputStream in = new ObjectInputStream(file); 
-                            {
-                                while(true)
-                                {
-                                    LessonInfo info = (LessonInfo)in.readObject();
-                                    if(info == null)
-                                        break;
-                                    infoStorage.add(info);
-
-                                }
-                    }
-		}
-		catch(IOException e)
-		{
-			return;
-		}
-		catch(ClassNotFoundException e)
-		{
-			return;
-		}
+                infoStorage = infoStoragetable; //only for jar file as parsisteant objects 
+//                if(dataFile.exists() == false)  // cannot be modified at run time in jar file
+//                        return;
+//
+//                try
+//		{
+////                            InputStream file = etcDataManager.class.getClassLoader().getResourceAsStream("etcDataset.dat");
+//                            FileInputStream file = new FileInputStream(dataFile) {};
+//                            ObjectInputStream in = new ObjectInputStream(file); 
+//                            {
+//                                while(true)
+//                                {
+//                                    LessonInfo info = (LessonInfo)in.readObject();
+//                                    if(info == null)
+//                                        break;
+//                                    infoStorage.add(info);
+//
+//                                }
+//                    }
+//		}
+//		catch(IOException e)
+//		{
+//			return;
+//		}
+//		catch(ClassNotFoundException e)
+//		{
+//			return;
+//		}
                 
                 
         }
