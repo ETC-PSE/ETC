@@ -274,7 +274,7 @@ public class BookingList extends javax.swing.JPanel {
             }
         });
 
-        jInternalFrame1.setTitle("Student Check-In Confirmation");
+        jInternalFrame1.setTitle("Check-In Confirmation");
         jInternalFrame1.setVisible(true);
 
         jRadioButton2.setForeground(new java.awt.Color(51, 51, 51));
@@ -328,7 +328,7 @@ public class BookingList extends javax.swing.JPanel {
                     .addComponent(jRadioButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 54, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(182, Short.MAX_VALUE))
+                .addContainerGap(214, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
@@ -602,6 +602,7 @@ public class BookingList extends javax.swing.JPanel {
         Vector rowdata;
         rowdata = (Vector) tableModel.getDataVector().elementAt(jTable3.getSelectedRow());
         etcDataManager etc = new etcDataManager( );
+        String stid    = (String) rowdata.get(0);
         String stdname = (String) rowdata.get(1);
         String tutor   = (String) rowdata.get(5);
         String subject = (String) rowdata.get(2);
@@ -627,7 +628,7 @@ public class BookingList extends javax.swing.JPanel {
         }else{
             tutStatus = status;
         }
-        etc.changeLessonInfo(id,stdname,subject,date,hrs,min,tutor,stdStatus,tutStatus,tutid,book,rowindex);
+        etc.changeLessonInfo(stid,stdname,subject,date,hrs,min,tutor,stdStatus,tutStatus,tutid,book,rowindex);
         
     }
 
@@ -649,7 +650,7 @@ public class BookingList extends javax.swing.JPanel {
                 for (int i = 0; i < li.size(); i++) {
                 LessonInfo lessoninfo = (LessonInfo) li.get(i);
                 
-               if("none".equals(lessoninfo.books))
+                if("none".equals(lessoninfo.books))
                     dtm.addRow(new Object[] { lessoninfo.ID,     lessoninfo.name,    lessoninfo.subject,
                                           lessoninfo.date,       lessoninfo.hours+":"+lessoninfo.minutes, 
                                           lessoninfo.tutor,      lessoninfo.studentstatus,lessoninfo.tutorstatus,
