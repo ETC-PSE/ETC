@@ -664,7 +664,6 @@ public class BookingList extends javax.swing.JPanel {
     
         private void fillReportAttendanceData(ArrayList li,DefaultTableModel dtm) {
                 int count = 0;
-                int count2 = 0;
                 jTable5.getColumnModel().getColumn(9).setWidth(0);
                 jTable5.getColumnModel().getColumn(9).setMinWidth(0);
                 jTable5.getColumnModel().getColumn(9).setMaxWidth(0);
@@ -696,11 +695,6 @@ public class BookingList extends javax.swing.JPanel {
                                                   lessoninfo.tutor,      lessoninfo.studentstatus,lessoninfo.tutorstatus,
                                                   lessoninfo.tutorid,    lessoninfo.books, lessoninfo.index }); 
                     }
-                    
-//                    if(("TUTREPORT".equals(command)) && ("none".equals(lessoninfo.books))){
-//                        count2 = count2 + 1;
-//                       
-//                    }
                     
                     
                 }

@@ -17,8 +17,5 @@ public class ETC {
         manager = etcDataManager.createManagerInst();
         Login etcApp = new Login( );
     }
-    
-    
-    
-    
+ 
 }
