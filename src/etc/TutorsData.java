@@ -9,8 +9,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * Tutors ID and related data
- * @author sures
+ * Tutors related data
+ * @author suresh
  */
 public class TutorsData {
     
